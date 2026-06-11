@@ -1,0 +1,104 @@
+{
+  "timestamp": "2026-05-29 21:38:16",
+  "agent_dir": "C:/Users/zhang/AppData/Roaming/CherryStudio/Data/Agents\\5zvr5dykd",
+  "skills_dir": "C:/Users/zhang/AppData/Roaming/CherryStudio/Data/Skills",
+  "skills_count": 115,
+  "score": 76,
+  "grade": "警告",
+  "total": 15,
+  "passed": 13,
+  "failed": 0,
+  "warnings": 2,
+  "items": [
+    {
+      "name": "Skill 完整性",
+      "status": false,
+      "detail": "1/116 个 skill 缺少 SKILL.md（可能是非 skill 目录）",
+      "severity": "warning"
+    },
+    {
+      "name": "pipeline.json 语法",
+      "status": true,
+      "detail": "全部正常",
+      "severity": "info"
+    },
+    {
+      "name": "核心文件 [SOUL.md]",
+      "status": true,
+      "detail": "存在 (10.2 KB)",
+      "severity": "info"
+    },
+    {
+      "name": "核心文件 [USER.md]",
+      "status": true,
+      "detail": "存在 (2.2 KB)",
+      "severity": "info"
+    },
+    {
+      "name": "核心文件 [CLAUDE.md]",
+      "status": true,
+      "detail": "存在 (10.2 KB)",
+      "severity": "info"
+    },
+    {
+      "name": "核心文件 [memory/FACT.md]",
+      "status": true,
+      "detail": "存在 (6.7 KB)",
+      "severity": "info"
+    },
+    {
+      "name": "Workflow 脚本完整性",
+      "status": true,
+      "detail": "9/9 个脚本正常",
+      "severity": "info"
+    },
+    {
+      "name": "灵魂层同步",
+      "status": true,
+      "detail": "SOUL.md == CLAUDE.md",
+      "severity": "info"
+    },
+    {
+      "name": "资源锁目录",
+      "status": true,
+      "detail": "可写可用",
+      "severity": "info"
+    },
+    {
+      "name": "AGENT_MAP <-> WORKFLOWS 一致性",
+      "status": true,
+      "detail": "22 条流水线映射一致",
+      "severity": "info"
+    },
+    {
+      "name": "外部工具 [Python]",
+      "status": true,
+      "detail": "Python 3.14.3",
+      "severity": "info"
+    },
+    {
+      "name": "外部工具 [Git]",
+      "status": true,
+      "detail": "git version 2.52.0.windows.1",
+      "severity": "info"
+    },
+    {
+      "name": "外部工具 [J-Link (JLink.exe)]",
+      "status": false,
+      "detail": "未找到",
+      "severity": "warning"
+    },
+    {
+      "name": "外部工具 [Keil UV4 (UV4.exe)]",
+      "status": true,
+      "detail": "存在 (12457 KB)",
+      "severity": "info"
+    },
+    {
+      "name": "WorkflowState",
+      "status": true,
+      "detail": "空（无状态文件）",
+      "severity": "info"
+    }
+  ]
+}

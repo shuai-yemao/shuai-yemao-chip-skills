@@ -1,0 +1,20 @@
+{
+  "pipelines": {
+    "code-porting": {
+      "description": "代码移植全流程：差异分析 → 逐层移植 → 报告生成 → 知识归档",
+      "steps": ["porting-analyze", "porting-document"],
+      "phase": "Phase 6: 移植与迁移",
+      "required_params": {
+        "source-chip": "源芯片/平台型号",
+        "target-chip": "目标芯片/平台型号",
+        "type": "移植类型: mcu-port / hal-migration / toolchain / rtos / library / module"
+      },
+      "optional_params": {
+        "layers": "涉及层数: 1-7 (默认全部)",
+        "archive-obsidian": "归档到 Obsidian (默认 false)",
+        "import-kb": "导入知识库 (默认 false)",
+        "tags": "知识库标签 (默认 '移植')"
+      }
+    }
+  }
+}

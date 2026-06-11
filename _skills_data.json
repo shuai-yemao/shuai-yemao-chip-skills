@@ -1,0 +1,938 @@
+[
+  {
+    "name": "adc-module",
+    "description": "STM32 ADC 模数转换器配置、开发与故障排查。涵盖时钟树与转换时序计算、规则组/注入组、过采样、校准（偏移/线性度）、模拟看门狗、双ADC模式、DMA 采",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "adc-module/SKILL.md"
+  },
+  {
+    "name": "aes-module",
+    "description": "AES 加密解密开发指南。覆盖 AES 算法原理（ECB/CBC/GCM/CTR 模式）、\n  密钥长度 AES-128/192/256、STM32 CRYP ",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "aes-module/SKILL.md"
+  },
+  {
+    "name": "agent-packager",
+    "description": "Agent Package 标准化打包与版本管理系统——将嵌入式工作流 Agent 及其全套 skill 打包为工具无关的标准化格式（.agentpkg），支持",
+    "version": "1.3.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "agent-packager/SKILL.md"
+  },
+  {
+    "name": "arm-core-registers",
+    "description": "ARM Cortex-M 内核架构寄存器速查与调试指南。涵盖核心寄存器（R0~R15/PSP/MSP）、特殊寄存器（PRIMASK/BASEPRI/FAULTM",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "arm-core-registers/SKILL.md"
+  },
+  {
+    "name": "arm-interrupt-exception",
+    "description": "ARM Cortex-M 中断与异常系统完整指南——异常架构（类型/优先级/咬尾/晚到/抢占/悬起）、NVIC 编程（ISER/ICER/ISPR/ICPR/I",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "arm-interrupt-exception/SKILL.md"
+  },
+  {
+    "name": "arm-memory-architecture",
+    "description": "ARM Cortex-M 系统级内存架构指南——系统地址映射、MPU 完整配置（Region/SubRegion/Attribute/RBAR/RLAR）、Co",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "arm-memory-architecture/SKILL.md"
+  },
+  {
+    "name": "ble-module",
+    "description": "蓝牙低功耗(BLE)通信开发指南。覆盖 BLE 协议栈架构(GAP/GATT/SMP/L2CAP)、\n  广播/扫描/连接/配对全流程、STM32WB/ESP3",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "ble-module/SKILL.md"
+  },
+  {
+    "name": "bootloader-design",
+    "description": "嵌入式 Bootloader 设计与开发完整指南。涵盖启动流程架构（硬件初始化 → 完整性校验 → 引导决策 → APP 跳转）、Flash 分区策略（单区/双",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "bootloader-design/SKILL.md"
+  },
+  {
+    "name": "brainstorming",
+    "description": "在任何创造性工作之前必须使用此技能——创建功能、构建组件、添加功能或修改行为。在实现之前先探索用户意图、需求和设计。",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "brainstorming/SKILL.md"
+  },
+  {
+    "name": "build-cmake",
+    "description": "当需要配置或构建基于 CMake 的嵌入式固件工程，调用自带脚本执行构建并定位固件产物时使用。当用户提到 CMake 编译、cmake build、交叉编译、A",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "build-cmake/SKILL.md"
+  },
+  {
+    "name": "build-iar",
+    "description": "当需要通过 IAR Embedded Workbench 命令行编译嵌入式工程，调用自带脚本解析工程文件、执行构建并定位固件产物时使用。当用户提到 IAR 编译",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "build-iar/SKILL.md"
+  },
+  {
+    "name": "build-idf",
+    "description": "当需要配置或构建基于 ESP-IDF 的固件工程，调用自带脚本执行 idf.py build 并定位固件产物时使用。当用户提到 ESP-IDF 编译、idf.p",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "build-idf/SKILL.md"
+  },
+  {
+    "name": "build-keil",
+    "description": "当需要通过 Keil MDK 命令行编译嵌入式工程，调用自带脚本解析工程文件、执行构建并定位固件产物时使用。当用户提到 Keil 编译、MDK 编译、UV4 编",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "build-keil/SKILL.md"
+  },
+  {
+    "name": "build-platformio",
+    "description": "当需要通过 PlatformIO 命令行编译嵌入式工程，调用自带脚本解析环境配置、执行构建并定位固件产物时使用。当用户提到 PlatformIO 编译、pio ",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "build-platformio/SKILL.md"
+  },
+  {
+    "name": "can-debug",
+    "description": "当需要调试 CAN 总线通信时使用，支持通过 USB-CAN 适配器监听、发送 CAN 帧和扫描节点。当用户提到 CAN 总线、CAN 调试、CAN 分析、US",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "can-debug/SKILL.md"
+  },
+  {
+    "name": "caveman",
+    "description": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping   filler,",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "productivity",
+    "path": "productivity/caveman/SKILL.md"
+  },
+  {
+    "name": "cellular-module",
+    "description": "蜂窝通信（4G/NB-IoT/Cat-M）开发指南。覆盖蜂窝网络选型对比、\n  4G Cat-1/Cat-M/NB-IoT 差异与应用场景、SIM7xxx/BC",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "cellular-module/SKILL.md"
+  },
+  {
+    "name": "chip-architecture",
+    "description": "MCU 芯片架构与开发方式对比中央参考。覆盖 ARM Cortex-M 全系列（M0/M0+/M3/M4/M7/M33）、\n  STM32 各系列（F0/F1/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "chip-architecture/SKILL.md"
+  },
+  {
+    "name": "cmbacktrace-debug",
+    "description": "CmBacktrace (Cortex Microcontroller Backtrace) — ARM Cortex-M 系列 MCU 错误自动追踪与故障诊断",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "cmbacktrace-debug/SKILL.md"
+  },
+  {
+    "name": "code-porting",
+    "description": "嵌入式代码移植专家。当用户需要 (1) MCU 换型（STM32F1↔F4↔F7↔G0↔G4↔H7、GD32/AT32/CH32 等国产替代），(2) HAL ",
+    "version": "1.2.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "code-porting/SKILL.md"
+  },
+  {
+    "name": "coding-standards",
+    "description": "嵌入式 C 编码规范速查手册——合并自 MISRA C:2012（143 条规则）和立芯嵌入式 C 编码规范。\n  涵盖规则优先级协议（MISRA Mandat",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "coding-standards/SKILL.md"
+  },
+  {
+    "name": "crc-module",
+    "description": "CRC 校验算法开发指南。覆盖常见 CRC 模型（CRC-16/CCITT/32/MODBUS）、\n  查表法 vs 逐位法实现、硬件 CRC 外设（STM32",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "crc-module/SKILL.md"
+  },
+  {
+    "name": "debug-gdb-openocd",
+    "description": "当需要通过 OpenOCD 启动或附着 GDB 会话，调用自带脚本完成固件下载、在线调试或崩溃现场检查时使用。当用户提到 GDB 调试、OpenOCD 调试、在",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "debug-gdb-openocd/SKILL.md"
+  },
+  {
+    "name": "debug-platformio",
+    "description": "当需要通过 PlatformIO 内置调试功能对目标板进行 GDB 调试时使用，支持下载暂停、附加和崩溃现场分析。当用户提到 PlatformIO 调试、pio",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "_archive",
+    "path": "_archive/ecosystem/debug-platformio/SKILL.md"
+  },
+  {
+    "name": "diagnose",
+    "description": "Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce ",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/diagnose/SKILL.md"
+  },
+  {
+    "name": "dma-module",
+    "description": "STM32 DMA 直接存储器访问配置、开发与故障排查。涵盖 DMA 架构（V1/V2/V3）、Stream/Channel 请求映射、传输类型（M2P/P2M",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "dma-module/SKILL.md"
+  },
+  {
+    "name": "doc-automation",
+    "description": "嵌入式文档自动化工具集——从嵌入式 C 工程代码和配置中自动生成函数注释、API 文档、硬件接线说明、minunit 单元测试骨架和移植指南。所有脚本零外部依赖",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "doc-automation/SKILL.md"
+  },
+  {
+    "name": "dsp-module",
+    "description": "嵌入式数字信号处理(DSP)开发指南。覆盖 CMSIS-DSP 软件库函数、\n  FIR/IIR 数字滤波器设计与实现（直接型/级联型/格型）、\n  定点 vs",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "dsp-module/SKILL.md"
+  },
+  {
+    "name": "elog-module",
+    "description": "EasyLogger (elog) 轻量级嵌入式日志库指南。覆盖 elog 移植（elog_cfg.h/elog_port.c）、输出后端配置（RTT/UART",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "elog-module/SKILL.md"
+  },
+  {
+    "name": "embedded-architect",
+    "description": "嵌入式系统架构师的思维框架。",
+    "version": "\"1.0.0\"基于 ARM Cortex-M 系列参考手册、STM32 完整生态(50+ 模块技能)、",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "embedded-architect/SKILL.md"
+  },
+  {
+    "name": "embedded-debugger-framework",
+    "description": "嵌入式系统故障诊断框架——从现象到根因的系统性诊断方法论。\n  覆盖五层诊断模型（供电->物理连接->波形->寄存器->状态机）、故障隔离策略（二分法/子系统剥",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "embedded-debugger-framework/SKILL.md"
+  },
+  {
+    "name": "embedded-learning-notes",
+    "description": "嵌入式学习笔记管理（费曼学习法基底 + 诊断流程模板）— 将开发经验、实验记录、知识体系转化为结构化 Obsidian 笔记。覆盖费曼四步法（选概念→教小白→找",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "embedded-learning-notes/SKILL.md"
+  },
+  {
+    "name": "embedded-learning-path-framework",
+    "description": "嵌入式系统学习路径架构师——从HAL使用者到寄存器理解者再到系统设计者的三阶段进阶模型。\n  覆盖各阶段必须掌握的技能清单、必须踩的坑、里程碑项目设计、学习资源",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "embedded-learning-path-framework/SKILL.md"
+  },
+  {
+    "name": "embedded-reviewer",
+    "description": "嵌入式系统审查官的思维框架——嵌入式代码审查的单一入口。",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "embedded-reviewer/SKILL.md"
+  },
+  {
+    "name": "embedded-skills-map",
+    "description": "嵌入式技能地图——按领域分类管理所有嵌入式相关 skills，提供基于 Obsidian「领域/嵌入式/」知识库结构的分层导航。当用户需要了解可用技能、选择适合",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "embedded-skills-map/SKILL.md"
+  },
+  {
+    "name": "executing-plans",
+    "description": "当你有一份书面实现计划需要在单独的会话中执行，并设有审查检查点时使用",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "executing-plans/SKILL.md"
+  },
+  {
+    "name": "fatfs-module",
+    "description": "FatFs 文件系统移植、配置与开发指南。涵盖 FatFs 架构与应用层接口、disk_io 底层驱动实现（SDIO/SPI/Flash）、多盘管理、长文件名/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "fatfs-module/SKILL.md"
+  },
+  {
+    "name": "fft-module",
+    "description": "快速傅里叶变换(FFT)嵌入式开发指南。覆盖 FFT 算法原理和工程实现、\n  CMSIS-DSP FFT 函数(rfft/cfft)、ST 全系列及 ESP3",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "fft-module/SKILL.md"
+  },
+  {
+    "name": "firmware-sign",
+    "description": "固件签名、加密与安全打包工具。支持 ECDSA/RSA/Ed25519 数字签名、AES-256-GCM/CBC 加密、固件头打包、Bootloader 验签代",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "firmware-sign/SKILL.md"
+  },
+  {
+    "name": "flash-idf",
+    "description": "当需要通过 ESP-IDF 工具链烧录固件到 ESP32 系列芯片，或启动调试会话时使用。当用户提到 ESP32 烧录、esptool、idf.py flash",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "flash-idf/SKILL.md"
+  },
+  {
+    "name": "flash-jlink",
+    "description": "使用 J-Link 调试探针烧录嵌入式固件。支持 .hex/.bin/.elf，SWD/JTAG 接口，自动生成 Commander 脚本，多探针 SN 选择，",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "flash-jlink/SKILL.md"
+  },
+  {
+    "name": "flash-keil",
+    "description": "当需要通过 Keil MDK 烧录编译产物到目标 MCU 时使用。支持 .hex/.axf 文件通过 J-Link 烧录。与 build-keil 配合形成完整",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "flash-keil/SKILL.md"
+  },
+  {
+    "name": "flash-module",
+    "description": "STM32 内部 Flash 存储器编程与配置指南。涵盖 Flash 架构（Sector/Page/Bank 布局）、读写擦操作（HAL 与寄存器级）、等待周期",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "flash-module/SKILL.md"
+  },
+  {
+    "name": "flash-openocd",
+    "description": "当需要使用已探测或显式指定的产物与探针配置，调用自带脚本通过 OpenOCD 烧录嵌入式固件时使用。当用户提到 OpenOCD 烧录、openocd flash",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "flash-openocd/SKILL.md"
+  },
+  {
+    "name": "flash-platformio",
+    "description": "当需要通过 PlatformIO 烧录固件到目标板时使用，利用 platformio.ini 中的上传配置自动完成烧录。当用户提到 PlatformIO 烧录、",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "flash-platformio/SKILL.md"
+  },
+  {
+    "name": "freertos-module",
+    "description": "FreeRTOS 嵌入式实时操作系统开发指南。涵盖任务管理（创建/删除/优先级/栈）、队列/队列集/流缓冲区/消息缓冲区、信号量/互斥锁/优先级继承、事件组、任",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "freertos-module/SKILL.md"
+  },
+  {
+    "name": "gang-flash",
+    "description": "多路并行量产烧录工具。支持 OpenOCD 多 ST-Link、J-Link Multi-Emulator、esptool 多串口并行烧录，内建自动重试、读回校",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "gang-flash/SKILL.md"
+  },
+  {
+    "name": "git-guardrails-claude-code",
+    "description": "Set up Claude Code hooks to block dangerous git commands (push, reset --hard, cl",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "misc",
+    "path": "misc/git-guardrails-claude-code/SKILL.md"
+  },
+  {
+    "name": "gps-module",
+    "description": "GPS/GNSS 全球导航卫星系统开发指南。覆盖 GNSS 基础（GPS/北斗/GLONASS/Galileo）、\n  NMEA-0183 协议解析、UBX 二",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "gps-module/SKILL.md"
+  },
+  {
+    "name": "grill-me",
+    "description": "Interview the user relentlessly about a plan or design until reaching shared und",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "productivity",
+    "path": "productivity/grill-me/SKILL.md"
+  },
+  {
+    "name": "grill-with-docs",
+    "description": "Grilling session that challenges your plan against the existing domain model, sh",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/grill-with-docs/SKILL.md"
+  },
+  {
+    "name": "handoff",
+    "description": "Compact the current conversation into a handoff document for another agent to pi",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "productivity",
+    "path": "productivity/handoff/SKILL.md"
+  },
+  {
+    "name": "i2c-bus",
+    "description": "I2C 总线配置、驱动开发与故障排查。涵盖协议时序详解、STM32 HAL 状态机陷阱与恢复、多从机总线仲裁、时钟延展处理、总线死锁恢复。当用户提到 I2C、I",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "i2c-bus/SKILL.md"
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "description": "Find deepening opportunities in a codebase, informed by the domain language in C",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/improve-codebase-architecture/SKILL.md"
+  },
+  {
+    "name": "kb-datasheet",
+    "description": "芯片/传感器数据手册获取工具。支持17个厂商自动识别（ST/Espressif/NXP/TI/Nordic/Microchip/Renesas/GD/WCH +",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "kb-datasheet/SKILL.md"
+  },
+  {
+    "name": "kb-import",
+    "description": "搜索成果导入本地知识库。将验证通过的高价值内容（论坛解决方案/B站视频代码/官网关键章节/社区文章）写入 imported_docs.db，实现知识沉淀闭环。支",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "kb-import/SKILL.md"
+  },
+  {
+    "name": "kb-record",
+    "description": "开发问题记录到 Obsidian。使用四段式诊断模板（问题描述→原因分析→实验设计→验证实验）将调试过程中遇到的问题归档到 Obsidian vault 的「问",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "kb-record/SKILL.md"
+  },
+  {
+    "name": "kb-verify",
+    "description": "搜索结果真伪验证引擎。三维评分模型（来源权威性40%+内容安全30%+断言交叉验证30%），嵌入式特化一致性检查规则（AFIO时钟/DMA DBM/中断回调阻塞",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "kb-verify/SKILL.md"
+  },
+  {
+    "name": "knowledge-base-search",
+    "description": "六源知识检索管线。Phase1本地知识库(BM25+Vector+RRF+MMR) → Phase2芯片厂商官网文档+立创原理图 → Phase3 GitHub",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "knowledge-base-search/SKILL.md"
+  },
+  {
+    "name": "linker-scatter",
+    "description": "嵌入式链接脚本与分散加载文件指南（Keil .sct / GCC .ld / IAR .icf）。覆盖三种链接脚本语法对照、内存区域定义（ROM/RAM 地址与",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "linker-scatter/SKILL.md"
+  },
+  {
+    "name": "lora-module",
+    "description": "LoRa/LoRaWAN 远距离低功耗无线通信开发指南。覆盖 LoRa 调制原理、\n  SX1278/SX1262 射频芯片驱动、ESP32+LoRa 方案、S",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "lora-module/SKILL.md"
+  },
+  {
+    "name": "lowpower-design",
+    "description": "STM32 系统低功耗设计完整指南。涵盖睡眠/停止/待机/关机四种模式、功耗数据选型、电源调节器配置（MR/LPR/ULP）、唤醒源设计（EXTI/RTC/LP",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "lowpower-design/SKILL.md"
+  },
+  {
+    "name": "lvgl-module",
+    "description": "LVGL(Light and Versatile Graphics Library) 轻量级嵌入式 GUI 开发指南。\n  覆盖 LVGL 架构（对象树/显示驱",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "lvgl-module/SKILL.md"
+  },
+  {
+    "name": "map-analyzer",
+    "description": "解析 GCC/Keil/IAR .map 文件，分析 Flash/RAM 使用率、模块符号大小、版本对比 diff、风险预警与优化建议。支持彩色进度条、JSON",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "map-analyzer/SKILL.md"
+  },
+  {
+    "name": "mcu-peripheral-registers",
+    "description": "STM32 外设寄存器级操作指南。涵盖 CMSIS 外设结构体映射、各系列寄存器差异、外设总线与时钟使能寄存器、GPIO（MODER/BSRR/OSPEEDR/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "mcu-peripheral-registers/SKILL.md"
+  },
+  {
+    "name": "migrate-to-shoehorn",
+    "description": "Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use ",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "misc",
+    "path": "misc/migrate-to-shoehorn/SKILL.md"
+  },
+  {
+    "name": "modbus-debug",
+    "description": "当需要调试 Modbus RTU（串口）或 Modbus TCP（网络）设备通信时使用，支持寄存器读写、从站扫描和持续监控。当用户提到 Modbus、Modbu",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "modbus-debug/SKILL.md"
+  },
+  {
+    "name": "motor-control",
+    "description": "专业电机控制开发指南——多环级联/并联伺服控制。覆盖 FOC 矢量控制（Clarke/Park/SVPWM）、电流环/速度环/位置环/角度环的级联与并联架构、数",
+    "version": "2.1.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "motor-control/SKILL.md"
+  },
+  {
+    "name": "mqtt-module",
+    "description": "MQTT 物联网通信协议开发指南。覆盖 MQTT 协议基础（发布/订阅/主题/QoS）、\n  MQTT v3.1.1 vs v5.0 差异、会话管理与遗愿(La",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "mqtt-module/SKILL.md"
+  },
+  {
+    "name": "ota-package",
+    "description": "嵌入式 OTA 固件包生成与测试工具。支持全量包、差分包(bsdiff)、压缩包(zlib)、分段包(chunked)、ESP32 OTA、A/B 分区元数据、",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "ota-package/SKILL.md"
+  },
+  {
+    "name": "ota-update-system",
+    "description": "嵌入式 OTA 升级系统架构设计与开发指南。涵盖 OTA 系统架构（A/B 双区/单区+恢复/外置 Flash/双芯片）、OTA 状态机（Idle→Downlo",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "ota-update-system/SKILL.md"
+  },
+  {
+    "name": "pcb-analysis",
+    "description": "LCEDA Pro 原理图综合分析——通过 ai_eda WebSocket 桥接器读取 LCEDA Pro 原理图，自动生成包含 BOM、电源树、引脚分配、网",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "_archive",
+    "path": "_archive/hardware/pcb-analysis/SKILL.md"
+  },
+  {
+    "name": "peripheral-driver",
+    "description": "当需要为外部设备（传感器、存储器、显示屏等）开发 BSP 驱动时使用。提供开源驱动搜索策略、质量评估、代码适配工具和常见设备适配要点。当用户提到外设驱动、传感器",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "peripheral-driver/SKILL.md"
+  },
+  {
+    "name": "prototype",
+    "description": "Build a throwaway prototype to flesh out a design before committing to it. Route",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/prototype/SKILL.md"
+  },
+  {
+    "name": "rsa-module",
+    "description": "RSA 非对称加密开发指南。覆盖 RSA 算法原理、密钥生成与存储、\n  签名验签流程（RSASSA-PKCS1-v1_5/PSS）、加密解密（OAEP）、\n ",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "rsa-module/SKILL.md"
+  },
+  {
+    "name": "rtos-debug",
+    "description": "RTOS 感知调试工具，支持 FreeRTOS/ThreadX/RT-Thread。通过 GDB+OpenOCD 查看任务列表、栈水印、堆状态、死锁分析、Har",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "rtos-debug/SKILL.md"
+  },
+  {
+    "name": "scaffold-exercises",
+    "description": "Create exercise directory structures with sections, problems, solutions, and exp",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "misc",
+    "path": "misc/scaffold-exercises/SKILL.md"
+  },
+  {
+    "name": "segger-rtt-module",
+    "description": "SEGGER RTT (Real-Time Transfer) 完整指南——MCU 端集成（源码/配置/API）+ PC 端监控（JLinkRTTClient/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "segger-rtt-module/SKILL.md"
+  },
+  {
+    "name": "serial-monitor",
+    "description": "当需要识别正确串口、调用自带脚本抓取日志，并分析嵌入式固件运行状态时使用。当用户提到串口、串口监控、串口日志、UART 日志、COM 口、波特率、串口调试、pu",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "serial-monitor/SKILL.md"
+  },
+  {
+    "name": "setup-matt-pocock-skills",
+    "description": "Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so ",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/setup-matt-pocock-skills/SKILL.md"
+  },
+  {
+    "name": "setup-pre-commit",
+    "description": "Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and te",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "misc",
+    "path": "misc/setup-pre-commit/SKILL.md"
+  },
+  {
+    "name": "sfud-module",
+    "description": "SFUD (Serial Flash Universal Driver) 串行 Flash 通用驱动库。覆盖 SFUD 移植、sfud_cfg.h 配置（SFD",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "sfud-module/SKILL.md"
+  },
+  {
+    "name": "skills-system-builder",
+    "description": "技能系统搭建指南——教其他 Agent 理解、创建、优化自己的技能体系。\n  从零开始设计技能目录结构、SKILL.md 标准模板、工具型 vs 知识型 ski",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "skills-system-builder/SKILL.md"
+  },
+  {
+    "name": "spi-bus",
+    "description": "SPI 总线配置、驱动开发与故障排查。涵盖四种时序模式详解、STM32 HAL 状态机与 BSY 标志陷阱、NSS 管理（硬件/软件/脉冲模式）、DMA+Cac",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "spi-bus/SKILL.md"
+  },
+  {
+    "name": "sram-module",
+    "description": "STM32 内部 SRAM 存储器配置与使用指南。涵盖 SRAM 架构（SRAM1/2/3/CCM/DTCM/ITCM）、各系列 SRAM 布局与映射、DMA ",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "sram-module/SKILL.md"
+  },
+  {
+    "name": "static-analysis",
+    "description": "对嵌入式 C/C++ 代码执行静态分析。封装 cppcheck 扫描未定义行为、内存泄漏、空指针、数组越界，支持 MISRA C 检查、增量基线对比、HTML/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "static-analysis/SKILL.md"
+  },
+  {
+    "name": "stm32-spl-development",
+    "description": "STM32 标准外设库 (SPL) 开发指南。覆盖：\n  - SPL 架构与文件系统（conf.h/it.h/外设 .c/.h）\n  - SPL vs HAL/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "stm32-spl-development/SKILL.md"
+  },
+  {
+    "name": "tdd",
+    "description": "Test-driven development with red-green-refactor loop. Use when user wants to bui",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/tdd/SKILL.md"
+  },
+  {
+    "name": "teach",
+    "description": "Teach the user a new skill or concept, within this workspace.",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "productivity",
+    "path": "productivity/teach/SKILL.md"
+  },
+  {
+    "name": "timer-module",
+    "description": "STM32 定时器配置、中断、PWM 与输入捕获开发指南。涵盖基本/通用/高级定时器架构、APB 时钟 ×2 规则、PWM 模式1/2 与互补输出/死区、输入捕",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "timer-module/SKILL.md"
+  },
+  {
+    "name": "to-issues",
+    "description": "Break a plan, spec, or PRD into independently-grabbable issues on the project is",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/to-issues/SKILL.md"
+  },
+  {
+    "name": "to-prd",
+    "description": "Turn the current conversation context into a PRD and publish it to the project i",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/to-prd/SKILL.md"
+  },
+  {
+    "name": "triage",
+    "description": "Triage issues through a state machine driven by triage roles. Use when user want",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/triage/SKILL.md"
+  },
+  {
+    "name": "uart-module",
+    "description": "STM32 UART/USART 串口通信配置、开发与故障排查。涵盖波特率计算与误差分析、USART vs UART 架构差异、RS485/DE 控制、LIN/",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "uart-module/SKILL.md"
+  },
+  {
+    "name": "usb-module",
+    "description": "STM32 USB 配置、开发与故障排查。涵盖 USB 架构（Device/OTG/HS）、时钟配置（48MHz）、CDC 虚拟串口、HID 设备、MSC 大容",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "usb-module/SKILL.md"
+  },
+  {
+    "name": "visa-debug",
+    "description": "当需要调试 GPIB/USB/TCP/Serial VISA 仪器通信时使用，支持 SCPI 命令收发、波形捕获、截图和持续监控。当用户提到 VISA、SCPI",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "_archive",
+    "path": "_archive/hardware/visa-debug/SKILL.md"
+  },
+  {
+    "name": "watchdog-module",
+    "description": "STM32 看门狗（IWDG/WWDG）配置、开发与故障排查。涵盖 IWDG 时钟源与分频计算、窗口模式、WWDG 窗口上下限计算、EWI 早唤醒中断、喂狗策略",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "watchdog-module/SKILL.md"
+  },
+  {
+    "name": "wifi-module",
+    "description": "WiFi 无线通信开发指南。覆盖 WiFi 协议基础（Station/AP/混杂模式）、\n  ESP32 ESP-IDF WiFi 开发、STM32W/AT 命",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "wifi-module/SKILL.md"
+  },
+  {
+    "name": "workflow",
+    "description": "当需要串联多个 skill 完成嵌入式开发全流程时使用。支持 6 个专用 Agent 分工协作（编译/烧录/监控、开发循环、项目管理、硬件验证、发布管理、Bug",
+    "version": "3.1.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "workflow/SKILL.md"
+  },
+  {
+    "name": "workflow-guide",
+    "description": "工作流体系导航与维护指南。当用户询问工作流结构、流水线清单、Agent 职责、链式触发规则、资源锁机制、如何添加/修改流水线、跨 Skill 冲突检测、工作流调",
+    "version": "1.2.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "workflow-guide/SKILL.md"
+  },
+  {
+    "name": "write-a-skill",
+    "description": "Create new agent skills with proper structure, progressive disclosure, and bundl",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "productivity",
+    "path": "productivity/write-a-skill/SKILL.md"
+  },
+  {
+    "name": "writing-plans",
+    "description": "当你有规格说明或需求用于多步骤任务时使用，在动手写代码之前",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "writing-plans/SKILL.md"
+  },
+  {
+    "name": "ymodem-module",
+    "description": "Ymodem 文件传输协议开发指南。覆盖 Ymodem 协议帧格式（SOH/STX/EOT/CAN）、\n  128 字节 vs 1024 字节模式、CRC-16",
+    "version": "1.0.0",
+    "depends_on": [],
+    "source": "",
+    "category": "root",
+    "path": "ymodem-module/SKILL.md"
+  },
+  {
+    "name": "zoom-out",
+    "description": "Tell the agent to zoom out and give broader context or a higher-level perspectiv",
+    "version": "",
+    "depends_on": [],
+    "source": "",
+    "category": "engineering",
+    "path": "engineering/zoom-out/SKILL.md"
+  }
+]

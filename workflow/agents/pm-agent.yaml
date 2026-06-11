@@ -1,0 +1,4 @@
+interface:
+  display_name: "pm-agent (项目管理/Sprint)"
+  short_description: "嵌入式项目管理专用 Agent，管理 Sprint 全流程"
+  default_prompt: "使用 pm-agent 管理嵌入式开发项目的 Sprint 全流程。支持 init-project(初始化项目结构)、sprint-plan(Sprint规划)、sprint-wrap(Sprint收尾)、risk-log(风险登记)、change-assess(变更评估)。自动生成 Backlog、Risk Register、Sprint Plan/Review/Retro 文档。"

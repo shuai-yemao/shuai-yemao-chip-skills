@@ -1,0 +1,4 @@
+interface:
+  display_name: "dev-agent (开发循环/静态分析/代码审查)"
+  short_description: "嵌入式 Sprint 开发循环专用 Agent，含外设驱动、静态分析、单元测试、代码审查"
+  default_prompt: "使用 dev-agent 执行 Sprint 开发循环。支持 bsp-bringup(开发板初始化)、add-peripheral(外设添加)、sprint-dev(标准开发循环)、code-review-pipeline(代码审查)、unit-test-pipeline(单元测试)、arch-review(架构评审) 等流水线。涉及推理的步骤(code-review/arch-review)会自动提示使用子 Agent 进行智能审查。"

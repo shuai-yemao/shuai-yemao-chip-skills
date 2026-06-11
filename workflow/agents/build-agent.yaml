@@ -1,0 +1,4 @@
+interface:
+  display_name: "build-agent (编译/烧录/监控)"
+  short_description: "嵌入式编译、烧录、串口监控和 GDB 调试专用 Agent"
+  default_prompt: "使用 build-agent 执行编译→烧录→监控流水线。指定构建系统(keil/cmake/platformio)和工程路径即可一站式完成编译、烧录到目标板、串口日志监控的全过程。支持 build-flash-monitor / build-flash-debug / full-cycle 三条流水线。"
