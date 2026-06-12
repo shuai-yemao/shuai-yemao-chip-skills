@@ -18,15 +18,6 @@
     "path": "aes-module/SKILL.md"
   },
   {
-    "name": "agent-packager",
-    "description": "Agent Package 标准化打包与版本管理系统——将嵌入式工作流 Agent 及其全套 skill 打包为工具无关的标准化格式（.agentpkg），支持",
-    "version": "1.3.0",
-    "depends_on": [],
-    "source": "",
-    "category": "root",
-    "path": "agent-packager/SKILL.md"
-  },
-  {
     "name": "arm-core-registers",
     "description": "ARM Cortex-M 内核架构寄存器速查与调试指南。涵盖核心寄存器（R0~R15/PSP/MSP）、特殊寄存器（PRIMASK/BASEPRI/FAULTM",
     "version": "1.0.0",
