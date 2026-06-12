@@ -306,15 +306,6 @@
     "path": "embedded-reviewer/SKILL.md"
   },
   {
-    "name": "embedded-skills-map",
-    "description": "嵌入式技能地图——按领域分类管理所有嵌入式相关 skills，提供基于 Obsidian「领域/嵌入式/」知识库结构的分层导航。当用户需要了解可用技能、选择适合",
-    "version": "1.0.0",
-    "depends_on": [],
-    "source": "",
-    "category": "root",
-    "path": "embedded-skills-map/SKILL.md"
-  },
-  {
     "name": "executing-plans",
     "description": "当你有一份书面实现计划需要在单独的会话中执行，并设有审查检查点时使用",
     "version": "",
@@ -880,24 +871,6 @@
     "source": "",
     "category": "root",
     "path": "wifi-module/SKILL.md"
-  },
-  {
-    "name": "workflow",
-    "description": "当需要串联多个 skill 完成嵌入式开发全流程时使用。支持 6 个专用 Agent 分工协作（编译/烧录/监控、开发循环、项目管理、硬件验证、发布管理、Bug",
-    "version": "3.1.0",
-    "depends_on": [],
-    "source": "",
-    "category": "root",
-    "path": "workflow/SKILL.md"
-  },
-  {
-    "name": "workflow-guide",
-    "description": "工作流体系导航与维护指南。当用户询问工作流结构、流水线清单、Agent 职责、链式触发规则、资源锁机制、如何添加/修改流水线、跨 Skill 冲突检测、工作流调",
-    "version": "1.2.0",
-    "depends_on": [],
-    "source": "",
-    "category": "root",
-    "path": "workflow-guide/SKILL.md"
   },
   {
     "name": "write-a-skill",
