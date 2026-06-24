@@ -1,0 +1,4 @@
+interface:
+  display_name: "verify-agent (硬件验证/压力测试)"
+  short_description: "嵌入式硬件验证专用 Agent，含外设通信测试和长时间压力测试"
+  default_prompt: "使用 verify-agent 执行硬件验证。支持 hw-integration(硬件集成：编译→烧录→外设测试→稳定性测试)、stress-test(稳定性测试：长时间日志采集→结果分析)和 schematic-review(原理图审查：BOM/电源树/引脚分配/网络拓扑/设计规则检查)。原理图审查需要先启动 ai_eda 桥服务器并在 LCEDA Pro 中连接插件。"

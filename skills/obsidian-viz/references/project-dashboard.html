@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><!-- PROJECT_NAME --> — 开发仪表盘</title>
+<!-- CDN -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+/* ===== 全局 ===== */
+:root {
+  --bg:#fff; --bg2:#f8f9fa; --bg3:#e9ecef; --bg4:#dee2e6;
+  --text:#212529; --text2:#495057; --text3:#868e96;
+  --border:#dee2e6; --accent:#228be6; --accent2:#1c7ed6;
+  --green:#2f9e44; --yellow:#f08c00; --red:#e03131; --purple:#7950f2;
+  --font:system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono','Cascadia Code','Fira Code',Consolas,monospace;
+  --radius:8px; --shadow:0 1px 3px rgba(0,0,0,.12);
+}
+[data-theme="dark"] {
+  --bg:#1a1b1e; --bg2:#25262b; --bg3:#2c2e33; --bg4:#373a40;
+  --text:#c1c2c5; --text2:#909296; --text3:#5c5f66;
+  --border:#373a40; --accent:#4dabf7; --accent2:#339af0;
+  --green:#51cf66; --yellow:#fcc419; --red:#ff6b6b; --purple:#9775fa;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.6; display:flex; min-height:100vh; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* ===== 顶栏 ===== */
+.toolbar { display:flex; justify-content:space-between; align-items:center;
+  background:var(--bg2); border-bottom:1px solid var(--border);
+  padding:8px 24px; position:fixed; top:0; left:0; right:0; z-index:100; height:48px; }
+.toolbar .brand { font-size:15px; font-weight:700; color:var(--accent); }
+.toolbar .actions { display:flex; gap:8px; align-items:center; }
+.toolbar .actions input { background:var(--bg); border:1px solid var(--border);
+  border-radius:4px; padding:4px 10px; font-size:13px; color:var(--text); width:200px; }
+.toolbar .btn { background:var(--bg3); border:1px solid var(--border); border-radius:4px;
+  padding:4px 12px; cursor:pointer; font-size:12px; color:var(--text2); transition:all .15s; }
+.toolbar .btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+.toolbar .badge-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+.badge-dot.ok { background:var(--green); } .badge-dot.warn { background:var(--yellow); }
+.badge-dot.err { background:var(--red); }
+
+/* ===== 布局 ===== */
+.container { display:flex; margin-top:48px; width:100%; }
+.sidebar { width:200px; flex-shrink:0; background:var(--bg2);
+  border-right:1px solid var(--border); padding:16px 0; position:fixed;
+  top:48px; left:0; height:calc(100vh - 48px); overflow-y:auto; }
+.sidebar .sec { font-size:10px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--text3); padding:10px 16px 4px; }
+.sidebar a { display:block; padding:5px 16px; font-size:13px; color:var(--text2);
+  transition:all .15s; border-left:3px solid transparent; }
+.sidebar a:hover { color:var(--accent); background:var(--bg3); text-decoration:none; }
+.sidebar a.active { color:var(--accent); border-left-color:var(--accent); font-weight:600; }
+
+main { flex:1; max-width:1000px; margin:0 auto; padding:24px 32px 60px; }
+
+/* ===== 面板组件 ===== */
+.card { background:var(--bg2); border:1px solid var(--border);
+  border-radius:var(--radius); margin-bottom:16px; overflow:hidden; }
+.card-header { display:flex; justify-content:space-between; align-items:center;
+  padding:10px 16px; background:var(--bg3); border-bottom:1px solid var(--border);
+  font-size:13px; font-weight:600; color:var(--text2); }
+.card-body { padding:14px 16px; }
+
+/* ===== 元信息行 ===== */
+.meta-row { display:flex; flex-wrap:wrap; gap:4px 20px; font-size:13px; color:var(--text2); margin-bottom:8px; }
+.meta-row strong { color:var(--text); }
+.tag { display:inline-block; padding:0 8px; border-radius:3px; font-size:11px; font-weight:600; }
+.tag.ok { background:#d3f9d8; color:#2b8a3e; }
+.tag.warn { background:#fff3bf; color:#e67700; }
+.tag.err { background:#ffe3e3; color:#c92a2a; }
+[data-theme="dark"] .tag.ok { background:#1e3a1e; color:#51cf66; }
+[data-theme="dark"] .tag.warn { background:#3a2e1e; color:#fcc419; }
+[data-theme="dark"] .tag.err { background:#3a1e1e; color:#ff6b6b; }
+
+/* ===== 表格 ===== */
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th,td { padding:6px 10px; text-align:left; border-bottom:1px solid var(--border); }
+th { background:var(--bg2); font-weight:600; color:var(--text2); font-size:12px; white-space:nowrap; }
+tr:hover td { background:var(--bg3); }
+
+/* ===== 图表 ===== */
+.chart-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+@media (max-width:700px) { .chart-row { grid-template-columns:1fr; } }
+.chart-box { background:var(--bg2); border:1px solid var(--border);
+  border-radius:var(--radius); padding:14px; }
+.chart-box h4 { font-size:12px; font-weight:600; color:var(--text2); margin-bottom:6px; text-align:center; }
+.chart-box canvas { max-height:200px; }
+
+/* ===== Mermaid ===== */
+.mermaid-box { background:var(--bg2); border:1px solid var(--border);
+  border-radius:var(--radius); padding:16px; margin-bottom:12px; overflow-x:auto; }
+
+/* ===== 代码 ===== */
+code { background:var(--bg3); padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:12px; }
+pre { background:#0d1117; color:#c9d1d9; padding:12px 14px; border-radius:var(--radius);
+  overflow-x:auto; font-family:var(--mono); font-size:12px; line-height:1.5; margin-bottom:12px; }
+
+/* ===== 日志 ===== */
+.log-box { background:#0d1117; border-radius:var(--radius); padding:10px 14px;
+  font-family:var(--mono); font-size:11px; line-height:1.5; max-height:300px; overflow-y:auto; white-space:pre-wrap; }
+.log-line { display:block; }
+.log-ts { color:#8b949e; } .log-info { color:#58a6ff; }
+.log-warn { color:#d29922; } .log-err { color:#f85149; }
+.log-debug { color:#6e7681; }
+
+/* ===== 进度条 ===== */
+.gauge { background:var(--bg3); border-radius:4px; height:8px; overflow:hidden; margin:4px 0 10px; }
+.gauge-fill { height:100%; border-radius:4px; transition:width .5s; }
+
+/* ===== 问题列表 ===== */
+.issue { display:flex; align-items:flex-start; gap:10px; padding:8px 0;
+  border-bottom:1px solid var(--border); font-size:13px; }
+.issue:last-child { border-bottom:none; }
+.issue-pri { width:16px; text-align:center; flex-shrink:0; font-size:14px; }
+.issue-pri.p0 { color:var(--red); } .issue-pri.p1 { color:var(--yellow); }
+.issue-pri.p2 { color:var(--accent); }
+
+/* ===== 折叠 ===== */
+details { margin-bottom:8px; }
+details summary { cursor:pointer; font-weight:600; font-size:13px;
+  color:var(--text2); padding:6px 0; }
+
+/* ===== 快速操作区 ===== */
+.quick-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px; margin-bottom:16px; }
+.quick-item { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+  padding:10px 12px; cursor:pointer; font-size:12px; color:var(--text2); transition:all .15s; text-align:center; }
+.quick-item:hover { border-color:var(--accent); color:var(--accent); background:var(--bg3); }
+.quick-item .icon { font-size:18px; display:block; margin-bottom:2px; }
+
+/* ===== 打印 ===== */
+@media print { .toolbar,.sidebar { display:none; } .container { margin-top:0; } main { margin:0; padding:20px; } }
+</style>
+</head>
+<body>
+
+<!-- ===== 顶栏 ===== -->
+<div class="toolbar">
+  <div class="brand"><!-- PROJECT_NAME --> <span style="font-weight:400;font-size:12px;color:var(--text3);margin-left:8px;"><!-- MCU --></span></div>
+  <div class="actions">
+    <input type="text" id="searchInput" placeholder="搜索...">
+    <button class="btn" id="themeToggle">暗色模式</button>
+    <button class="btn" onclick="window.location.reload()">刷新</button>
+  </div>
+</div>
+
+<!-- ===== 侧边栏 ===== -->
+<div class="sidebar">
+  <div class="sec">项目</div>
+  <a href="#meta" class="active">概览</a>
+  <a href="#resource">资源占用</a>
+  <a href="#pins">引脚配置</a>
+  <div class="sec">开发</div>
+  <a href="#build">编译</a>
+  <a href="#issues">问题跟踪</a>
+  <a href="#logs">日志</a>
+  <div class="sec">参考</div>
+  <a href="#arch">架构图</a>
+  <a href="#refs">快速参考</a>
+</div>
+
+<!-- ===== 主内容 ===== -->
+<main>
+
+<!-- ==================== 概览 ==================== -->
+<section id="meta">
+<div class="card">
+  <div class="card-header">
+    <span>项目概览</span>
+    <span class="tag ok" id="buildBadge"><!-- BUILD_STATUS --></span>
+  </div>
+  <div class="card-body">
+    <div class="meta-row"><strong>MCU：</strong><!-- MCU_FULL --></div>
+    <div class="meta-row"><strong>工具链：</strong><!-- TOOLCHAIN --></div>
+    <div class="meta-row"><strong>调试器：</strong><!-- DEBUGGER --></div>
+    <div class="meta-row"><strong>串口：</strong><!-- SERIAL --></div>
+    <div class="meta-row"><strong>工程目录：</strong><code><!-- PROJECT_PATH --></code></div>
+    <div class="meta-row"><strong>最近更新：</strong><!-- LAST_UPDATE --></div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 资源占用 ==================== -->
+<section id="resource">
+<div class="card">
+  <div class="card-header"><span>Flash / RAM 占用</span></div>
+  <div class="card-body">
+    <div class="chart-row">
+      <div class="chart-box"><h4>Flash 占用率</h4><canvas id="gaugeFlash"></canvas></div>
+      <div class="chart-box"><h4>RAM 占用率</h4><canvas id="gaugeRam"></canvas></div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-box" style="grid-column:1/-1;"><h4>Flash 按模块分布</h4><canvas id="chartFlashPie" style="max-height:200px;"></canvas></div>
+    </div>
+    <table>
+      <tr><th>区域</th><th>起始</th><th>大小</th><th>已用</th><th>剩余</th><th>占用率</th></tr>
+      <tr><td>Flash</td><td data-key="FLASH_START"><!-- FLASH_START --></td><td data-key="FLASH_SIZE"><!-- FLASH_SIZE --></td><td data-key="FLASH_USED"><!-- FLASH_USED --></td><td data-key="FLASH_FREE"><!-- FLASH_FREE --></td><td data-key="FLASH_PCT"><!-- FLASH_PCT --></td></tr>
+      <tr><td>SRAM</td><td data-key="SRAM_START"><!-- SRAM_START --></td><td data-key="SRAM_SIZE"><!-- SRAM_SIZE --></td><td data-key="SRAM_USED"><!-- SRAM_USED --></td><td data-key="SRAM_FREE"><!-- SRAM_FREE --></td><td data-key="SRAM_PCT"><!-- SRAM_PCT --></td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 引脚配置 ==================== -->
+<section id="pins">
+<div class="card">
+  <div class="card-header"><span>引脚配置 <span style="font-weight:400;color:var(--text3);font-size:11px;">— 修改引脚后同步更新</span></span></div>
+  <div class="card-body">
+    <table>
+      <tr><th>引脚</th><th>功能</th><th>外设</th><th>配置</th><th>备注</th></tr>
+      <!-- 替换下方行 -->
+      <tr><td><!-- PIN --></td><td><!-- FUNC --></td><td><!-- PERIPH --></td><td><!-- CFG --></td><td><!-- NOTE --></td></tr>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 编译 ==================== -->
+<section id="build">
+<div class="card">
+  <div class="card-header">
+    <span>最近编译 <span style="font-weight:400;color:var(--text3);font-size:11px;"><!-- BUILD_TIME --></span></span>
+    <span><code>keil_builder.py &lt;工程路径&gt;</code></span>
+  </div>
+  <div class="card-body">
+    <div class="meta-row"><strong>输出：</strong><!-- BUILD_OUTPUT --></div>
+    <div class="meta-row"><strong>Code：</strong><!-- CODE_SIZE --> <strong>RO-data：</strong><!-- RO_SIZE --> <strong>RW-data：</strong><!-- RW_SIZE --> <strong>ZI-data：</strong><!-- ZI_SIZE --></div>
+    <pre><!-- BUILD_LOG --></pre>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 问题跟踪 ==================== -->
+<section id="issues">
+<div class="card">
+  <div class="card-header"><span>问题跟踪</span></div>
+  <div class="card-body">
+    <div style="display:flex;gap:12px;margin-bottom:12px;">
+      <span>待解决：<strong id="openCount" style="color:var(--red)">0</strong></span>
+      <span>已解决：<strong id="doneCount" style="color:var(--green)">0</strong></span>
+    </div>
+    <div id="issueList">
+      <!-- 替换为具体 issue 条目 -->
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 日志 ==================== -->
+<section id="logs">
+<div class="card">
+  <div class="card-header"><span>运行日志 <span style="font-weight:400;color:var(--text3);font-size:11px;">— 粘贴串口/RTT 输出</span></span></div>
+  <div class="card-body">
+    <pre id="logArea" class="log-box"><!-- LOG_CONTENT --></pre>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 架构图 ==================== -->
+<section id="arch">
+<div class="card">
+  <div class="card-header"><span>系统架构图</span></div>
+  <div class="card-body">
+    <div class="mermaid-box">
+    <pre class="mermaid"><!-- MERMAID_ARCH --></pre>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ==================== 快速参考 ==================== -->
+<section id="refs">
+<div class="card">
+  <div class="card-header"><span>快速参考</span></div>
+  <div class="card-body">
+    <details>
+      <summary>常用命令</summary>
+      <pre id="quickCmds"><!-- QUICK_COMMANDS --></pre>
+    </details>
+    <details>
+      <summary>时钟树</summary>
+      <div class="mermaid-box">
+      <pre class="mermaid"><!-- MERMAID_CLOCK --></pre>
+      </div>
+    </details>
+    <details>
+      <summary>关键寄存器地址</summary>
+      <table>
+        <tr><th>外设</th><th>基地址</th><th>总线</th></tr>
+        <!-- 替换为具体寄存器 -->
+        <tr><td><!-- REG_NAME --></td><td><code><!-- REG_ADDR --></code></td><td><!-- REG_BUS --></td></tr>
+      </table>
+    </details>
+    <details>
+      <summary>数据手册 & 参考文档</summary>
+      <div style="font-size:13px;">
+        <!-- DOC_LINKS -->
+      </div>
+    </details>
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- ===== JS ===== -->
+<script>
+/* === 主题 === */
+(function(){const s=localStorage.getItem('theme');if(s==='dark')document.documentElement.setAttribute('data-theme','dark');})();
+document.getElementById('themeToggle').onclick=function(){const h=document.documentElement;const d=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',d?'light':'dark');localStorage.setItem('theme',d?'light':'dark');this.textContent=d?'暗色模式':'亮色模式';};
+
+/* === 搜索 === */
+document.getElementById('searchInput').oninput=function(){const q=this.value.toLowerCase().trim();document.querySelectorAll('p,td,th,li,pre,strong,span').forEach(e=>{if(!e.closest||e.closest('.toolbar'))return;const t=e.textContent.toLowerCase();e.style.background=(!q||t.includes(q))?'':'var(--yellow-alpha)';});};
+
+/* === 侧边栏 === */
+document.querySelectorAll('.sidebar a').forEach(a=>{a.onclick=function(){document.querySelectorAll('.sidebar a').forEach(x=>x.classList.remove('active'));this.classList.add('active');};});
+window.onscroll=function(){let cur='';document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));};
+
+/* === Charts === */
+document.addEventListener('DOMContentLoaded',function(){
+  function g(id,val,label,color){
+    const c=document.getElementById(id);if(!c)return;
+    new Chart(c,{type:'doughnut',data:{labels:[label,'剩余'],datasets:[{data:[val,100-val],backgroundColor:[color,'var(--bg3)'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:true,cutout:'70%',plugins:{tooltip:{callbacks:{label:ctx=>ctx.dataIndex===0?`${val}%`:''}},legend:{display:false}}}});
+  }
+  g('gaugeFlash',<!-- FLASH_PCT_NUM -->,'Flash','#228be6');
+  g('gaugeRam',<!-- SRAM_PCT_NUM -->,'SRAM','#2f9e44');
+
+  const pie=document.getElementById('chartFlashPie');
+  if(pie){
+    new Chart(pie,{type:'pie',data:{labels:['HAL/LL','FreeRTOS','应用逻辑','BSP驱动','其他'],datasets:[{data:[85,48,132,62,185],backgroundColor:['#228be6','#40c057','#fab005','#e03131','#868e96'],borderWidth:2,borderColor:'var(--bg)'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{color:'var(--text)'}}}}});
+  }
+});
+
+/* === Mermaid === */
+mermaid.initialize({startOnLoad:true,theme:document.documentElement.getAttribute('data-theme')==='dark'?'dark':'default',securityLevel:'loose'});
+
+/* === KaTeX === */
+document.addEventListener('DOMContentLoaded',function(){if(typeof renderMathInElement==='function'){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});}});
+</script>
+</body>
+</html>

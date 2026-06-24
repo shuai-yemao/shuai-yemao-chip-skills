@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><!-- PROJECT_TITLE --> — 交互分析报告</title>
+
+<!-- ============ CDN 依赖 ============ -->
+<!-- Mermaid 图表 -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<!-- KaTeX 公式渲染 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<!-- Chart.js 交互图表 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+<style>
+/* ============ 全局 ============ */
+:root {
+  --bg: #ffffff; --bg2: #f8f9fa; --bg3: #e9ecef;
+  --text: #212529; --text2: #495057; --text3: #868e96;
+  --border: #dee2e6; --accent: #228be6; --accent2: #1c7ed6;
+  --green: #2f9e44; --yellow: #f08c00; --red: #e03131;
+  --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  --radius: 8px; --shadow: 0 1px 3px rgba(0,0,0,.12);
+}
+[data-theme="dark"] {
+  --bg: #1a1b1e; --bg2: #25262b; --bg3: #2c2e33;
+  --text: #c1c2c5; --text2: #909296; --text3: #5c5f66;
+  --border: #373a40; --accent: #4dabf7; --accent2: #339af0;
+  --shadow: 0 1px 3px rgba(0,0,0,.4);
+  --green: #51cf66; --yellow: #fcc419; --red: #ff6b6b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font); background: var(--bg); color: var(--text);
+  line-height: 1.7; display: flex; min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ============ 侧边栏 ============ */
+nav {
+  width: 240px; flex-shrink: 0; background: var(--bg2);
+  border-right: 1px solid var(--border); padding: 20px 0;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+nav .nav-title {
+  font-size: 14px; font-weight: 700; color: var(--text2);
+  padding: 0 20px 12px; border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+nav a {
+  display: block; padding: 6px 20px; font-size: 14px;
+  color: var(--text2); transition: all .15s; border-left: 3px solid transparent;
+}
+nav a:hover { color: var(--accent); background: var(--bg3); text-decoration: none; }
+nav a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+nav .nav-section { font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--text3); padding: 12px 20px 4px; }
+
+/* ============ 主内容 ============ */
+main {
+  flex: 1; max-width: 960px; margin: 0 auto; padding: 32px 40px;
+}
+
+/* ============ 头部 ============ */
+.header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid var(--accent); }
+.header h1 { font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+.header .meta { color: var(--text3); font-size: 14px; }
+.header .meta span { margin-right: 20px; }
+
+/* ============ 信息卡 ============ */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px; margin-bottom: 24px; }
+.info-card { background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px; }
+.info-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--text3); margin-bottom: 2px; }
+.info-card .value { font-size: 16px; font-weight: 600; color: var(--text); }
+.info-card .value.ok { color: var(--green); }
+.info-card .value.warn { color: var(--yellow); }
+.info-card .value.err { color: var(--red); }
+
+/* ============ 标题层级 ============ */
+h2 { font-size: 22px; font-weight: 700; margin: 36px 0 16px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 17px; font-weight: 600; margin: 24px 0 12px; color: var(--accent); }
+
+/* ============ Mermaid 容器 ============ */
+.mermaid-box { background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 20px;
+  overflow-x: auto; text-align: center; }
+
+/* ============ 交互图表 ============ */
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 700px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-box { background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; }
+.chart-box h4 { font-size: 13px; font-weight: 600; color: var(--text2);
+  margin-bottom: 8px; text-align: center; }
+.chart-box canvas { max-height: 260px; }
+
+/* ============ 表格 ============ */
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--bg2); font-weight: 600; color: var(--text2);
+  position: sticky; top: 0; }
+tr:hover { background: var(--bg2); }
+.status { font-weight: 600; font-size: 13px; }
+.status.ok { color: var(--green); } .status.warn { color: var(--yellow); }
+.status.err { color: var(--red); }
+
+/* ============ 代码块 ============ */
+.code-block { position: relative; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  margin-bottom: 20px; font-size: 13px; }
+.code-block .code-header { display: flex; justify-content: space-between;
+  align-items: center; padding: 6px 12px; background: var(--bg3);
+  border-bottom: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0;
+  font-size: 12px; color: var(--text3); font-family: var(--mono); }
+.code-block pre { margin: 0; padding: 12px 16px; overflow-x: auto;
+  font-family: var(--mono); line-height: 1.5; tab-size: 4; }
+.code-block .copy-btn {
+  position: absolute; top: 6px; right: 8px;
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 4px;
+  padding: 2px 8px; font-size: 11px; cursor: pointer; color: var(--text2);
+  transition: all .15s;
+}
+.code-block .copy-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ============ KaTeX 公式 ============ */
+.formula-box { background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; margin-bottom: 16px;
+  overflow-x: auto; text-align: center; font-size: 18px; }
+.formula-inline { display: inline; }
+
+/* ============ 日志查看器 ============ */
+.log-controls { display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+.log-controls input, .log-controls select {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+  padding: 6px 10px; font-size: 13px; color: var(--text); font-family: var(--mono); }
+.log-controls input { flex: 1; min-width: 160px; }
+.log-viewer { background: #0d1117; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+  max-height: 400px; overflow-y: auto; margin-bottom: 20px; white-space: pre-wrap;
+  word-break: break-all; }
+.log-line { display: block; }
+.log-line .ts { color: #8b949e; }
+.log-line .lvl-info { color: #58a6ff; }
+.log-line .lvl-warn { color: #d29922; }
+.log-line .lvl-err { color: #f85149; }
+.log-line .lvl-debug { color: #6e7681; }
+.log-line.hidden { display: none; }
+
+/* ============ 折叠区域 ============ */
+details { background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+details summary { padding: 12px 16px; cursor: pointer; font-weight: 600;
+  font-size: 14px; color: var(--text2);
+  transition: background .15s; }
+details summary:hover { background: var(--bg3); }
+details > div { padding: 12px 16px; border-top: 1px solid var(--border); }
+
+/* ============ 状态标记徽章 ============ */
+.badge { display: inline-block; padding: 1px 8px; border-radius: 10px;
+  font-size: 11px; font-weight: 600; }
+.badge.ok { background: #d3f9d8; color: #2b8a3e; }
+.badge.warn { background: #fff3bf; color: #e67700; }
+.badge.err { background: #ffe3e3; color: #c92a2a; }
+[data-theme="dark"] .badge.ok { background: #1e3a1e; color: #51cf66; }
+[data-theme="dark"] .badge.warn { background: #3a2e1e; color: #fcc419; }
+[data-theme="dark"] .badge.err { background: #3a1e1e; color: #ff6b6b; }
+
+/* ============ 顶栏控制 ============ */
+.topbar { display: flex; justify-content: flex-end; align-items: center;
+  gap: 12px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.topbar .search-input { flex: 1; max-width: 300px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 6px 10px; font-size: 13px; color: var(--text); }
+.theme-toggle { background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 4px; padding: 4px 12px; cursor: pointer; font-size: 13px;
+  color: var(--text2); transition: all .15s; }
+.theme-toggle:hover { background: var(--bg3); }
+
+/* ============ 进度条 ============ */
+.progress-track { display: flex; gap: 8px; align-items: center; margin-bottom: 16px; }
+.progress-bar { flex: 1; height: 10px; background: var(--bg3);
+  border-radius: 5px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 5px; transition: width .6s ease; }
+.progress-fill.ok { background: var(--green); }
+.progress-fill.warn { background: var(--yellow); }
+.progress-fill.err { background: var(--red); }
+
+/* ============ 空状态适配 ============ */
+main:empty::before { display: block; text-align: center; padding: 60px 20px;
+  color: var(--text3); font-size: 16px; content: "内容未填充 — 请替换 <!-- TEMPLATE --> 标记"; }
+
+/* ============ 打印 ============ */
+@media print { nav { display: none; } body { display: block; } main { max-width: 100%; padding: 20px; } }
+</style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- 侧边栏导航 -->
+<!-- ================================================================ -->
+<nav>
+  <div class="nav-title"><!-- PROJECT_TITLE --></div>
+  <div class="nav-section">概览</div>
+  <a href="#info" class="active">项目信息</a>
+  <a href="#status">外设状态</a>
+  <a href="#diagrams">架构图</a>
+  <div class="nav-section">数据分析</div>
+  <a href="#charts">交互图表</a>
+  <a href="#formulas">公式</a>
+  <a href="#tables">数据表</a>
+  <div class="nav-section">调试</div>
+  <a href="#logs">日志</a>
+  <a href="#details">诊断详情</a>
+</nav>
+
+<!-- ================================================================ -->
+<!-- 主内容区 — 替换 <!-- ... --> 标记即可填充数据 -->
+<!-- ================================================================ -->
+<main>
+
+<!-- ==================== 顶栏 ==================== -->
+<div class="topbar">
+  <input type="text" class="search-input" id="searchInput" placeholder="全文搜索...">
+  <button class="theme-toggle" id="themeToggle">暗色模式</button>
+</div>
+
+<!-- ==================== 项目头部 ==================== -->
+<div class="header" id="info">
+  <h1><!-- PROJECT_TITLE --></h1>
+  <div class="meta">
+    <span>📅 日期：<!-- DATE --></span>
+    <span>🎯 目标板：<!-- TARGET_MCU --></span>
+    <span>🔧 调试器：<!-- DEBUGGER --></span>
+    <span>📡 串口：<!-- SERIAL_PORT --></span>
+  </div>
+</div>
+
+<!-- ==================== 项目信息卡 ==================== -->
+<div class="info-grid">
+  <div class="info-card">
+    <div class="label">固件版本</div>
+    <div class="value"><!-- FW_VERSION --></div>
+  </div>
+  <div class="info-card">
+    <div class="label">编译状态</div>
+    <div class="value ok"><!-- BUILD_STATUS --></div>
+  </div>
+  <div class="info-card">
+    <div class="label">Flash 占用</div>
+    <div class="value"><!-- FLASH_USAGE --></div>
+  </div>
+  <div class="info-card">
+    <div class="label">RAM 占用</div>
+    <div class="value"><!-- RAM_USAGE --></div>
+  </div>
+</div>
+
+<!-- ==================== 外设状态 ==================== -->
+<h2 id="status">外设状态总览</h2>
+
+<table>
+  <thead>
+    <tr><th>外设</th><th>配置</th><th>状态</th><th>备注</th></tr>
+  </thead>
+  <tbody>
+    <!-- 替换下方行 -->
+    <tr><td><!-- PERIPHERAL_NAME --></td><td><!-- CONFIG --></td><td><span class="status ok">[OK]</span></td><td><!-- NOTE --></td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== Mermaid 架构图 ==================== -->
+<h2 id="diagrams">系统架构图</h2>
+
+<div class="mermaid-box">
+<pre class="mermaid">
+<!-- MERMAID_DIAGRAM -->
+graph TD
+    A["MCU"] --> B["UART 日志"]
+    A --> C["SPI Flash"]
+    A --> D["I2C 传感器"]
+</pre>
+</div>
+
+<!-- ==================== 交互图表 ==================== -->
+<h2 id="charts">交互图表</h2>
+
+<div class="chart-row">
+  <div class="chart-box">
+    <h4><!-- CHART_1_TITLE --></h4>
+    <canvas id="chart1"></canvas>
+  </div>
+  <div class="chart-box">
+    <h4><!-- CHART_2_TITLE --></h4>
+    <canvas id="chart2"></canvas>
+  </div>
+</div>
+
+<!-- ==================== 公式 ==================== -->
+<h2 id="formulas">公式与计算</h2>
+
+<div class="formula-box">
+  $$<!-- KATEX_FORMULA -->$$
+</div>
+
+<!-- ==================== 数据表 ==================== -->
+<h2 id="tables">数据表</h2>
+
+<table>
+  <thead>
+    <tr><th><!-- COL_1 --></th><th><!-- COL_2 --></th><th><!-- COL_3 --></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><!-- DATA_1 --></td><td><!-- DATA_2 --></td><td><!-- DATA_3 --></td></tr>
+  </tbody>
+</table>
+
+<!-- ==================== 日志查看器 ==================== -->
+<h2 id="logs">运行日志</h2>
+
+<div class="log-controls">
+  <input type="text" id="logFilter" placeholder="过滤日志...">
+  <select id="logLevel">
+    <option value="all">全部</option>
+    <option value="info">INFO</option>
+    <option value="warn">WARN</option>
+    <option value="err">ERROR</option>
+    <option value="debug">DEBUG</option>
+  </select>
+  <span id="logCount" style="font-size:13px;color:var(--text3);align-self:center;"></span>
+</div>
+<div class="log-viewer" id="logViewer"><!-- LOG_ENTRIES --></div>
+
+<!-- ==================== 诊断详情 ==================== -->
+<h2 id="details">诊断详情</h2>
+
+<!-- 替换为具体诊断步骤 -->
+<details>
+  <summary><!-- ISSUE_TITLE --></summary>
+  <div>
+    <p><strong>根因：</strong><!-- ROOT_CAUSE --></p>
+    <p><strong>方案：</strong><!-- SOLUTION --></p>
+    <table>
+      <tr><th>步骤</th><th>操作</th><th>状态</th></tr>
+      <tr><td>1</td><td><!-- STEP_1 --></td><td><span class="badge ok">完成</span></td></tr>
+    </table>
+  </div>
+</details>
+
+</main>
+
+<!-- ================================================================ -->
+<!-- JavaScript -->
+<!-- ================================================================ -->
+<script>
+/* ============ 主题切换 ============ */
+(function() {
+  const stored = localStorage.getItem('theme');
+  if (stored === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+})();
+
+document.getElementById('themeToggle').addEventListener('click', function() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  this.textContent = isDark ? '暗色模式' : '亮色模式';
+});
+
+/* ============ 全文搜索 ============ */
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  const targets = document.querySelectorAll('h2, h3, p, td, th, li, .code-block pre');
+  if (!q) { targets.forEach(e => e.style.background = ''); return; }
+  targets.forEach(e => {
+    const txt = e.textContent.toLowerCase();
+    e.style.background = txt.includes(q) ? 'var(--yellow-alpha)' : '';
+  });
+  document.querySelectorAll('*').forEach(el => {
+    if (el.children.length === 0 && el.textContent.toLowerCase().includes(q)) {
+      const p = el.closest('section, details, .info-card, tr');
+      if (p) p.style.background = '';
+    }
+  });
+});
+
+/* ============ 侧边栏高亮 ============ */
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', function() {
+    document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('h2[id]');
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+/* ============ 代码复制 ============ */
+document.querySelectorAll('.code-block').forEach(block => {
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn'; btn.textContent = '复制';
+  btn.addEventListener('click', async () => {
+    const code = block.querySelector('pre')?.textContent || '';
+    try { await navigator.clipboard.writeText(code);
+      btn.textContent = '已复制!';
+      setTimeout(() => btn.textContent = '复制', 2000);
+    } catch { btn.textContent = '失败';
+      setTimeout(() => btn.textContent = '复制', 2000); }
+  });
+  block.appendChild(btn);
+});
+
+/* ============ 日志过滤 ============ */
+document.getElementById('logFilter')?.addEventListener('input', filterLogs);
+document.getElementById('logLevel')?.addEventListener('change', filterLogs);
+
+function filterLogs() {
+  const filter = document.getElementById('logFilter').value.toLowerCase();
+  const level = document.getElementById('logLevel').value;
+  const lines = document.querySelectorAll('.log-line');
+  let count = 0;
+  lines.forEach(line => {
+    const text = line.textContent.toLowerCase();
+    const lvl = line.dataset.level || 'info';
+    const matchFilter = !filter || text.includes(filter);
+    const matchLevel = level === 'all' || lvl === level;
+    const visible = matchFilter && matchLevel;
+    line.classList.toggle('hidden', !visible);
+    if (visible) count++;
+  });
+  const total = lines.length;
+  document.getElementById('logCount').textContent = `显示 ${count} / ${total} 条`;
+}
+filterLogs(); // 初始化计数
+
+/* ============ Mermaid 初始化 ============ */
+mermaid.initialize({
+  startOnLoad: true,
+  theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+  securityLevel: 'loose',
+  fontFamily: 'system-ui, -apple-system, sans-serif'
+});
+
+/* 主题切换时重新渲染 Mermaid */
+document.getElementById('themeToggle').addEventListener('click', function() {
+  setTimeout(() => {
+    const boxes = document.querySelectorAll('.mermaid-box .mermaid');
+    boxes.forEach(el => {
+      const src = el.textContent;
+      el.removeAttribute('data-processed');
+      el.textContent = src;
+    });
+    mermaid.run({ nodes: boxes });
+  }, 100);
+});
+
+/* ============ KaTeX 渲染 ============ */
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false }
+      ],
+      throwOnError: false
+    });
+  }
+});
+
+/* ============ Chart.js 示例图表 ============ */
+document.addEventListener('DOMContentLoaded', function() {
+  /* Chart 1: 资源占用饼图 */
+  const ctx1 = document.getElementById('chart1');
+  if (ctx1) {
+    new Chart(ctx1, {
+      type: 'pie',
+      data: {
+        labels: ['HAL 库', 'FreeRTOS', '应用逻辑', 'BSP 驱动', '其余'],
+        datasets: [{
+          data: [85, 48, 132, 62, 185],
+          backgroundColor: ['#228be6', '#40c057', '#fab005', '#e03131', '#868e96'],
+          borderWidth: 2, borderColor: 'var(--bg)'
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: true,
+        plugins: { legend: { position: 'right', labels: { color: 'var(--text)' } } }
+      }
+    });
+  }
+
+  /* Chart 2: 趋势折线图 */
+  const ctx2 = document.getElementById('chart2');
+  if (ctx2) {
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['t=0', 't=1', 't=2', 't=3', 't=4', 't=5'],
+        datasets: [{
+          label: '采样值', data: [1024, 1536, 2048, 1792, 1280, 1024],
+          borderColor: '#228be6', backgroundColor: 'rgba(34,139,230,0.1)',
+          fill: true, tension: 0.3, pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: true,
+        plugins: { legend: { labels: { color: 'var(--text)' } } },
+        scales: {
+          x: { ticks: { color: 'var(--text2)' }, grid: { color: 'var(--border)' } },
+          y: { ticks: { color: 'var(--text2)' }, grid: { color: 'var(--border)' }, beginAtZero: true }
+        }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
