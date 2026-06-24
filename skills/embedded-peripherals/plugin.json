@@ -1,0 +1,29 @@
+{
+  "name": "embedded-peripherals",
+  "version": "1.0.0",
+  "description": "常用外设模块技能包 - ADC/定时器/看门狗/DMA/USB/电机控制",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": [
+    "adc-module", "timer-module", "watchdog-module", "peripheral-driver",
+    "dma-module", "usb-module", "motor-control", "flash-module", "sram-module"
+  ],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultADCResolution": 12,
+    "defaultTimerPeriod": 1000,
+    "defaultWatchdogTimeout": 2000,
+    "dmaChannelCount": 8
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["peripherals", "adc", "timer", "watchdog", "dma", "usb", "motor", "flash", "sram"],
+    "minVersion": "1.0.0"
+  }
+}

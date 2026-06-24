@@ -1,0 +1,32 @@
+{
+  "name": "embedded-dev-tools",
+  "version": "1.0.0",
+  "description": "嵌入式开发工具技能包 - 构建/烧录/调试/质量分析",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": [
+    "build-keil", "build-iar", "build-cmake", "build-platformio",
+    "flash-jlink", "flash-keil", "flash-openocd", "flash-platformio", "gang-flash",
+    "debug-gdb-openocd", "serial-monitor", "segger-rtt-module", "cmbacktrace-debug", "embedded-debugger-framework",
+    "static-analysis", "map-analyzer", "firmware-sign", "ota-package",
+    "pcb-analysis", "visa-debug"
+  ],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultBuildTool": "cmake",
+    "defaultFlashTool": "jlink",
+    "defaultDebugger": "gdb-openocd",
+    "staticAnalysisEnabled": true
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["build", "flash", "debug", "analysis", "keil", "iar", "cmake", "platformio", "jlink", "openocd"],
+    "minVersion": "1.0.0"
+  }
+}

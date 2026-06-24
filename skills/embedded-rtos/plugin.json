@@ -1,0 +1,26 @@
+{
+  "name": "embedded-rtos",
+  "version": "1.0.0",
+  "description": "RTOS 开发技能包 - FreeRTOS/ThreadX/实时系统",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": ["freertos-module", "rtos-debug"],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultRTOS": "FreeRTOS",
+    "maxTasks": 16,
+    "stackSize": 1024,
+    "tickRate": 1000
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["rtos", "freertos", "threadx", "real-time", "multitask"],
+    "minVersion": "1.0.0"
+  }
+}

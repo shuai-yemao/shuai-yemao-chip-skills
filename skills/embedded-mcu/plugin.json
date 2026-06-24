@@ -1,0 +1,29 @@
+{
+  "name": "embedded-mcu",
+  "version": "1.0.0",
+  "description": "MCU 架构开发技能包 - STM32/ESP32/ARM Cortex-M/RISC-V",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": [
+    "stm32-hal-development", "stm32-spl-development",
+    "arm-core-registers", "arm-memory-architecture", "arm-interrupt-exception",
+    "mcu-peripheral-registers", "build-idf", "flash-idf"
+  ],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultMCU": "STM32F411CEU6",
+    "defaultFramework": "HAL",
+    "defaultToolchain": "arm-none-eabi-gcc"
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["mcu", "stm32", "esp32", "arm", "risc-v", "hal", "spl"],
+    "minVersion": "1.0.0"
+  }
+}

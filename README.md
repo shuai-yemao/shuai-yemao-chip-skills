@@ -22,7 +22,49 @@ mindmap
       frontend-excellence
       frontend-toolkit
     嵌入式开发
-      embedded
+      系统架构
+        embedded
+        embedded-architect
+        embedded-system-design
+      代码审查
+        embedded-reviewer
+      调试工具
+        embedded-debugger-framework
+        rtos-debug
+        cmbacktrace-debug
+        segger-rtt-module
+      STM32
+        stm32-hal-development
+        stm32-spl-development
+      RTOS
+        freertos-module
+        rtos-debug
+      外设驱动
+        i2c-bus
+        spi-bus
+        uart-module
+        adc-module
+        dma-module
+        timer-module
+        watchdog-module
+      通信协议
+        can-debug
+      存储
+        flash-module
+        sfud-module
+        flash-jlink
+        flash-openocd
+        flash-keil
+        flash-platformio
+        flash-idf
+        gang-flash
+      日志
+        elog-module
+      学习资源
+        embedded-learning-notes
+        embedded-learning-path-framework
+        embedded-note-templates
+        embedded-skills-map
     论文写作
       paper-writing
     生产力工具
@@ -75,42 +117,92 @@ graph TB
             A5[frontend-toolkit/]
         end
         
-        subgraph "嵌入式开发"
-            A6[embedded/]
+        subgraph "嵌入式开发（38 个）"
+            A6[系统架构]
+            A6 --> A6a[embedded]
+            A6 --> A6b[embedded-architect]
+            A6 --> A6c[embedded-system-design]
+            
+            A7[代码审查]
+            A7 --> A7a[embedded-reviewer]
+            
+            A8[调试工具]
+            A8 --> A8a[embedded-debugger-framework]
+            A8 --> A8b[rtos-debug]
+            A8 --> A8c[cmbacktrace-debug]
+            A8 --> A8d[segger-rtt-module]
+            
+            A9[STM32]
+            A9 --> A9a[stm32-hal-development]
+            A9 --> A9b[stm32-spl-development]
+            
+            A10[RTOS]
+            A10 --> A10a[freertos-module]
+            
+            A11[外设驱动]
+            A11 --> A11a[i2c-bus]
+            A11 --> A11b[spi-bus]
+            A11 --> A11c[uart-module]
+            A11 --> A11d[adc-module]
+            A11 --> A11e[dma-module]
+            A11 --> A11f[timer-module]
+            A11 --> A11g[watchdog-module]
+            
+            A12[通信协议]
+            A12 --> A12a[can-debug]
+            
+            A13[存储]
+            A13 --> A13a[flash-module]
+            A13 --> A13b[sfud-module]
+            A13 --> A13c[flash-jlink]
+            A13 --> A13d[flash-openocd]
+            A13 --> A13e[flash-keil]
+            A13 --> A13f[flash-platformio]
+            A13 --> A13g[flash-idf]
+            A13 --> A13h[gang-flash]
+            
+            A14[日志]
+            A14 --> A14a[elog-module]
+            
+            A15[学习资源]
+            A15 --> A15a[embedded-learning-notes]
+            A15 --> A15b[embedded-learning-path-framework]
+            A15 --> A15c[embedded-note-templates]
+            A15 --> A15d[embedded-skills-map]
         end
         
         subgraph "论文写作"
-            A7[paper-writing/]
+            A16[paper-writing/]
         end
         
         subgraph "生产力工具"
-            A8[productivity/]
-            A8 --> A8a[grill-me]
-            A8 --> A8b[teach]
-            A8 --> A8c[handoff]
-            A8 --> A8d[caveman]
+            A17[productivity/]
+            A17 --> A17a[grill-me]
+            A17 --> A17b[teach]
+            A17 --> A17c[handoff]
+            A17 --> A17d[caveman]
         end
         
         subgraph "知识管理"
-            A9[knowledge-base-search/]
+            A18[knowledge-base-search/]
         end
         
         subgraph "个人工具"
-            A10[personal/]
-            A10 --> A10a[edit-article]
-            A10 --> A10b[obsidian-vault]
+            A19[personal/]
+            A19 --> A19a[edit-article]
+            A19 --> A19b[obsidian-vault]
         end
         
         subgraph "杂项工具"
-            A11[misc/]
-            A11 --> A11a[git-guardrails]
-            A11 --> A11b[migrate-to-shoehorn]
+            A20[misc/]
+            A20 --> A20a[git-guardrails]
+            A20 --> A20b[migrate-to-shoehorn]
         end
         
         subgraph "其他"
-            A12[agent-skills/]
-            A13[git-workflow-skill/]
-            A14[learned/]
+            A21[agent-skills/]
+            A22[git-workflow-skill/]
+            A23[learned/]
         end
     end
 
@@ -119,7 +211,7 @@ graph TB
     style A2 fill:#e8f5e9
     style A4 fill:#fff3e0
     style A6 fill:#fce4ec
-    style A8 fill:#f3e5f5
+    style A17 fill:#f3e5f5
 ```
 
 ## 🎯 技能分类
@@ -151,18 +243,56 @@ graph TB
 | **frontend-excellence** | 前端开发最佳实践 | frontend excellence, 前端最佳实践 |
 | **frontend-toolkit** | 前端工具包 | frontend toolkit, 前端工具 |
 
-### 嵌入式开发（1 个）
+### 嵌入式开发（38 个）
 
 | 技能 | 描述 | 触发关键词 |
 |------|------|-----------|
 | **embedded** | 嵌入式系统开发专家 | embedded, MCU, STM32, ESP32, firmware |
+| **embedded-architect** | 嵌入式架构师 | embedded architect, 嵌入式架构 |
+| **embedded-reviewer** | 嵌入式代码审查 | embedded review, 嵌入式审查 |
+| **embedded-debugger-framework** | 嵌入式调试框架 | embedded debug, 嵌入式调试 |
+| **embedded-learning-notes** | 嵌入式学习笔记 | embedded learning, 嵌入式学习 |
+| **embedded-learning-path-framework** | 嵌入式学习路径 | embedded path, 学习路径 |
+| **embedded-note-templates** | 嵌入式笔记模板 | embedded notes, 笔记模板 |
+| **embedded-skills-map** | 嵌入式技能地图 | embedded skills map, 技能地图 |
+| **stm32-hal-development** | STM32 HAL 开发 | stm32 hal, HAL 开发 |
+| **stm32-spl-development** | STM32 SPL 开发 | stm32 spl, SPL 开发 |
+| **freertos-module** | FreeRTOS 模块 | freertos, RTOS |
+| **rtos-debug** | RTOS 调试 | rtos debug, RTOS 调试 |
+| **i2c-bus** | I²C 总线驱动 | i2c, I2C |
+| **spi-bus** | SPI 总线驱动 | spi, SPI |
+| **uart-module** | UART 模块 | uart, UART |
+| **can-debug** | CAN 总线调试 | can, CAN |
+| **adc-module** | ADC 模块 | adc, ADC |
+| **dma-module** | DMA 模块 | dma, DMA |
+| **timer-module** | Timer 模块 | timer, 定时器 |
+| **watchdog-module** | Watchdog 模块 | watchdog, 看门狗 |
+| **flash-module** | Flash 模块 | flash, Flash |
+| **flash-jlink** | JLink 烧录 | jlink, JLink |
+| **flash-openocd** | OpenOCD 烧录 | openocd, OpenOCD |
+| **flash-keil** | Keil 烧录 | keil, Keil |
+| **flash-platformio** | PlatformIO 烧录 | platformio, PlatformIO |
+| **flash-idf** | ESP-IDF 烧录 | esp-idf, ESP-IDF |
+| **gang-flash** | 批量烧录 | gang flash, 批量烧录 |
+| **sfud-module** | SFUD 存储模块 | sfud, SFUD |
+| **elog-module** | ELog 日志模块 | elog, 日志 |
+| **cmbacktrace-debug** | CmBacktrace 调试 | cmbacktrace, 堆栈跟踪 |
+| **segger-rtt-module** | SEGGER RTT 模块 | segger rtt, RTT |
 
 **覆盖领域**：
-- MCU 架构：STM32、ESP32、RISC-V、ARM Cortex
-- 外设驱动：GPIO、ADC、DMA、Timer、I²C、SPI、UART、CAN
-- 无线通信：BLE、WiFi、LoRa、GPS、MQTT
-- RTOS：FreeRTOS 任务管理、队列、信号量
-- 工具链：CMake、PlatformIO、ESP-IDF、OpenOCD
+
+| 分类 | Skills |
+|------|--------|
+| **系统架构** | embedded, embedded-architect, embedded-system-design |
+| **代码审查** | embedded-reviewer |
+| **调试工具** | embedded-debugger-framework, rtos-debug, cmbacktrace-debug, segger-rtt-module |
+| **STM32 开发** | stm32-hal-development, stm32-spl-development |
+| **RTOS** | freertos-module, rtos-debug |
+| **外设驱动** | i2c-bus, spi-bus, uart-module, adc-module, dma-module, timer-module, watchdog-module |
+| **通信协议** | can-debug |
+| **存储** | flash-module, sfud-module, flash-jlink, flash-openocd, flash-keil, flash-platformio, flash-idf, gang-flash |
+| **日志** | elog-module |
+| **学习资源** | embedded-learning-notes, embedded-learning-path-framework, embedded-note-templates, embedded-skills-map |
 
 ### 论文写作（1 个）
 
@@ -212,31 +342,31 @@ graph TB
 
 ```mermaid
 pie title Skills 分布
-    "学术研究" : 4
+    "嵌入式开发" : 38
     "工程开发" : 6
-    "前端开发" : 2
-    "嵌入式开发" : 1
-    "论文写作" : 1
     "生产力工具" : 5
-    "知识管理" : 1
+    "学术研究" : 4
+    "前端开发" : 2
     "个人工具" : 2
     "杂项工具" : 2
     "其他" : 3
+    "论文写作" : 1
+    "知识管理" : 1
 ```
 
 | 分类 | 数量 | 占比 |
 |------|------|------|
-| 学术研究 | 4 | 13.3% |
-| 工程开发 | 6 | 20.0% |
-| 前端开发 | 2 | 6.7% |
-| 嵌入式开发 | 1 | 3.3% |
-| 论文写作 | 1 | 3.3% |
-| 生产力工具 | 5 | 16.7% |
-| 知识管理 | 1 | 3.3% |
-| 个人工具 | 2 | 6.7% |
-| 杂项工具 | 2 | 6.7% |
-| 其他 | 3 | 10.0% |
-| **总计** | **30** | **100%** |
+| **嵌入式开发** | **38** | **58.5%** |
+| 工程开发 | 6 | 9.2% |
+| 生产力工具 | 5 | 7.7% |
+| 学术研究 | 4 | 6.2% |
+| 前端开发 | 2 | 3.1% |
+| 个人工具 | 2 | 3.1% |
+| 杂项工具 | 2 | 3.1% |
+| 其他 | 3 | 4.6% |
+| 论文写作 | 1 | 1.5% |
+| 知识管理 | 1 | 1.5% |
+| **总计** | **65** | **100%** |
 
 ## 🚀 快速开始
 

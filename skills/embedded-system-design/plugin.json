@@ -1,0 +1,26 @@
+{
+  "name": "embedded-system-design",
+  "version": "1.0.0",
+  "description": "系统级设计技能包 - 低功耗/Bootloader/OTA/芯片架构",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": ["lowpower-design", "bootloader-design", "ota-update-system", "chip-architecture"],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultBootMode": "dual-bank",
+    "otaBlockSize": 1024,
+    "lowPowerMode": "stop",
+    "watchdogEnabled": true
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["system-design", "lowpower", "bootloader", "ota", "architecture"],
+    "minVersion": "1.0.0"
+  }
+}

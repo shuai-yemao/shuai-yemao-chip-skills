@@ -1,0 +1,30 @@
+{
+  "name": "embedded-middleware",
+  "version": "1.0.0",
+  "description": "嵌入式中间件技能包 - 文件系统/加密/通信/图形/DSP",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": [
+    "fatfs-module", "aes-module", "rsa-module", "crc-module",
+    "ymodem-module", "lora-module", "lvgl-module",
+    "dsp-module", "fft-module", "sfud-module", "elog-module"
+  ],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultFileSystem": "FATFS",
+    "defaultEncryption": "AES",
+    "defaultCompression": "LZ4",
+    "logLevel": "INFO"
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["middleware", "filesystem", "encryption", "communication", "graphics", "dsp"],
+    "minVersion": "1.0.0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "embedded-communication",
+  "version": "1.0.0",
+  "description": "嵌入式通信协议技能包 - I2C/SPI/UART/CAN/LoRa/BLE/WiFi/MQTT",
+  "author": "Chip System",
+  "license": "MIT",
+  "entry": "index.js",
+  "skills": [
+    "i2c-bus", "spi-bus", "uart-module", "can-debug", "modbus-debug",
+    "ble-module", "wifi-module", "lora-module", "cellular-module", "gps-module",
+    "mqtt-module"
+  ],
+  "workflows": [],
+  "dependencies": [],
+  "config": {
+    "defaultBaudRate": 115200,
+    "i2cSpeed": 400000,
+    "spiMode": 0,
+    "canBitRate": 500000
+  },
+  "hooks": {
+    "onInstall": "install.js",
+    "onUninstall": "uninstall.js"
+  },
+  "metadata": {
+    "category": "embedded",
+    "tags": ["communication", "i2c", "spi", "uart", "can", "ble", "wifi", "lora", "mqtt"],
+    "minVersion": "1.0.0"
+  }
+}
