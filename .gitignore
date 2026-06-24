@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temp files
+tmp/
+*.tmp
+*.bak
+
+# Environment
+.env
+.env.local
+
+# Build output
+dist/
+build/
+
+# 符号链接（指向外部路径）
+skills/lark-*
+skills/in-progress/
