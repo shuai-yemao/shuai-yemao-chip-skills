@@ -1,4 +1,0 @@
-interface:
-  display_name: "fix-agent (Bug修复闭环)"
-  short_description: "嵌入式 Bug 修复闭环专用 Agent，复现→捕获→归档→Git提交全自动"
-  default_prompt: "使用 fix-agent 执行 Bug 修复闭环。唯一流水线 fix-verify-commit：编译修复代码→烧录到目标板→采集运行日志验证修复→更新 Obsidian 问题记录→Git 提交。需指定 --issue(问题路径) --result(验证结果) --commit-msg(提交信息)。"

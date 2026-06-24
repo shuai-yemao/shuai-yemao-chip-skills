@@ -1,4 +1,0 @@
-interface:
-  display_name: "release-agent (发布管理/固件签名)"
-  short_description: "嵌入式固件发布管理专用 Agent，含固件签名、OTA 打包、发布全流程"
-  default_prompt: "使用 release-agent 管理固件发布流程。支持 release-prep(发布准备：编译→静态分析→Map分析→固件签名→OTA打包)和 release(正式发布：编译→签名→打包→开发日志)。发布前所有步骤必须 0 Error 0 Warning。"

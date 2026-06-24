@@ -6,7 +6,7 @@ Claude Code 技能包集合 — 用于自动化各种开发任务。
 
 ```mermaid
 mindmap
-  root((Skills 149个))
+  root((Skills 142个))
     嵌入式开发（50+）
       MCU 架构
         arm-core-registers
@@ -132,12 +132,9 @@ mindmap
       lark-wiki
       lark-vc
     Agent 技能
-      agent-packager
       skill-creator
       skills-system-builder
       find-skills
-      workflow
-      workflow-guide
     杂项工具
       doc-automation
       devlog
@@ -145,7 +142,6 @@ mindmap
       pcb-analysis
       serial-monitor
       visa-debug
-      serial-monitor
 ```
 
 ## 📁 目录结构
@@ -178,28 +174,28 @@ graph TB
             A5[frontend-toolkit/]
         end
         
-        subgraph "嵌入式开发（38 个）"
+        subgraph "嵌入式开发（34 个）"
             A6[系统架构]
             A6 --> A6a[embedded]
             A6 --> A6b[embedded-architect]
             A6 --> A6c[embedded-system-design]
-            
+
             A7[代码审查]
             A7 --> A7a[embedded-reviewer]
-            
+
             A8[调试工具]
             A8 --> A8a[embedded-debugger-framework]
             A8 --> A8b[rtos-debug]
             A8 --> A8c[cmbacktrace-debug]
             A8 --> A8d[segger-rtt-module]
-            
+
             A9[STM32]
             A9 --> A9a[stm32-hal-development]
             A9 --> A9b[stm32-spl-development]
-            
+
             A10[RTOS]
             A10 --> A10a[freertos-module]
-            
+
             A11[外设驱动]
             A11 --> A11a[i2c-bus]
             A11 --> A11b[spi-bus]
@@ -208,10 +204,10 @@ graph TB
             A11 --> A11e[dma-module]
             A11 --> A11f[timer-module]
             A11 --> A11g[watchdog-module]
-            
+
             A12[通信协议]
             A12 --> A12a[can-debug]
-            
+
             A13[存储]
             A13 --> A13a[flash-module]
             A13 --> A13b[sfud-module]
@@ -221,15 +217,9 @@ graph TB
             A13 --> A13f[flash-platformio]
             A13 --> A13g[flash-idf]
             A13 --> A13h[gang-flash]
-            
+
             A14[日志]
             A14 --> A14a[elog-module]
-            
-            A15[学习资源]
-            A15 --> A15a[embedded-learning-notes]
-            A15 --> A15b[embedded-learning-path-framework]
-            A15 --> A15c[embedded-note-templates]
-            A15 --> A15d[embedded-skills-map]
         end
         
         subgraph "论文写作"
@@ -438,10 +428,6 @@ graph TB
 | **embedded-architect** | 嵌入式架构师 | embedded architect, 嵌入式架构 |
 | **embedded-reviewer** | 嵌入式代码审查 | embedded review, 嵌入式审查 |
 | **embedded-debugger-framework** | 嵌入式调试框架 | embedded debug, 嵌入式调试 |
-| **embedded-learning-notes** | 嵌入式学习笔记 | embedded learning, 嵌入式学习 |
-| **embedded-learning-path-framework** | 嵌入式学习路径 | embedded path, 学习路径 |
-| **embedded-note-templates** | 嵌入式笔记模板 | embedded notes, 笔记模板 |
-| **embedded-skills-map** | 嵌入式技能地图 | embedded skills map, 技能地图 |
 | **stm32-hal-development** | STM32 HAL 开发 | stm32 hal, HAL 开发 |
 | **stm32-spl-development** | STM32 SPL 开发 | stm32 spl, SPL 开发 |
 | **freertos-module** | FreeRTOS 模块 | freertos, RTOS |
@@ -479,7 +465,6 @@ graph TB
 | **通信协议** | can-debug |
 | **存储** | flash-module, sfud-module, flash-jlink, flash-openocd, flash-keil, flash-platformio, flash-idf, gang-flash |
 | **日志** | elog-module |
-| **学习资源** | embedded-learning-notes, embedded-learning-path-framework, embedded-note-templates, embedded-skills-map |
 
 ### 论文写作（1 个）
 
@@ -549,16 +534,13 @@ graph TB
 | **lark-workflow-meeting-summary** | 飞书会议纪要工作流 | lark meeting summary |
 | **lark-workflow-standup-report** | 飞书站会报告工作流 | lark standup report |
 
-### Agent 技能（7 个）
+### Agent 技能（3 个）
 
 | 技能 | 描述 | 触发关键词 |
 |------|------|-----------|
-| **agent-packager** | Agent 打包器 | agent packager, 打包 Agent |
 | **skill-creator** | 技能创建器 | skill creator, 创建技能 |
 | **skills-system-builder** | 技能系统构建器 | skills system builder |
 | **find-skills** | 查找技能 | find skills, 查找技能 |
-| **workflow** | 工作流 | workflow, 工作流 |
-| **workflow-guide** | 工作流指南 | workflow guide, 工作流指南 |
 
 ### 杂项工具（10 个）
 
@@ -572,34 +554,34 @@ graph TB
 ## 📈 统计信息
 
 ```mermaid
-pie title Skills 分布（149 个）
-    "嵌入式开发" : 55
+pie title Skills 分布（142 个）
+    "嵌入式开发" : 48
     "飞书集成" : 25
     "工程开发" : 8
-    "Agent 技能" : 7
+    "Agent 技能" : 3
     "生产力工具" : 7
     "Obsidian" : 4
     "知识管理" : 5
     "学术研究" : 5
     "前端开发" : 2
     "杂项工具" : 10
-    "其他" : 21
+    "其他" : 25
 ```
 
 | 分类 | 数量 | 占比 |
 |------|------|------|
-| **嵌入式开发** | **55** | **36.9%** |
-| **飞书集成** | **25** | **16.8%** |
-| **杂项工具** | **10** | **6.7%** |
-| **工程开发** | **8** | **5.4%** |
-| **Agent 技能** | **7** | **4.7%** |
-| **生产力工具** | **7** | **4.7%** |
-| **知识管理** | **5** | **3.4%** |
-| **学术研究** | **5** | **3.4%** |
-| **Obsidian** | **4** | **2.7%** |
-| **前端开发** | **2** | **1.3%** |
-| **其他** | **21** | **14.1%** |
-| **总计** | **149** | **100%** |
+| **嵌入式开发** | **48** | **33.8%** |
+| **飞书集成** | **25** | **17.6%** |
+| **杂项工具** | **10** | **7.0%** |
+| **工程开发** | **8** | **5.6%** |
+| **生产力工具** | **7** | **4.9%** |
+| **知识管理** | **5** | **3.5%** |
+| **学术研究** | **5** | **3.5%** |
+| **Obsidian** | **4** | **2.8%** |
+| **Agent 技能** | **3** | **2.1%** |
+| **前端开发** | **2** | **1.4%** |
+| **其他** | **25** | **17.6%** |
+| **总计** | **142** | **100%** |
 
 ## 🚀 快速开始
 
@@ -704,6 +686,7 @@ metadata:
 - ✅ 重构 README，使用 Mermaid 图表
 - ✅ 完善技能分类和描述
 - ✅ 添加使用示例和自定义指南
+- ✅ 删除已废弃 skills（agent-packager, workflow, workflow-guide, embedded-learning-notes, embedded-learning-path-framework, embedded-note-templates, embedded-skills-map）
 
 ## 📄 许可证
 
